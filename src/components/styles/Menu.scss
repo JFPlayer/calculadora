@@ -1,0 +1,42 @@
+.menu {
+  position: absolute;
+  z-index: 100;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  left: -100vw;
+
+  &--side-menu {
+    position: relative;
+    background-color: rgb(180, 180, 180);
+    width: 100vw;
+    left: 0;
+    border-right: solid 15px white;
+    transition: 0.5s;
+
+    li {
+      height: 10vh;
+      display: flex;
+      align-items: center;
+      padding-left: 5%;
+      border-bottom: solid 2px rgba(245, 245, 245, 0.8);
+      background-color: rgb(15, 75, 240);
+      color: white;
+    }
+  }
+}
+
+.btn-options {
+  position: absolute;
+  z-index: 100;
+  font-size: 2rem;
+  height: 45px;
+  margin: 15px;
+}
+.open-sidemenu {
+  left: 100vw;
+}
+.hide {
+  display: none;
+}
