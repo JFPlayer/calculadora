@@ -40,22 +40,23 @@ function reducer(state, action) {
         ...state,
         operation: state.operation.slice(0, -1),
       };
-      
     }
     case "GET_RESULT": {
-      if(state.result !== "" && state.operation != "")
-      return {
-        history: [
-          ...state.history,
-          {
-            operation: state.operation,
-            result: state.result,
-          },
-        ],
-        operation: state.result,
-        result: "",
-      };
+      if(state.result !== "" && state.operation !== ""){
+        return {
+          history: [
+            ...state.history,
+            {
+              operation: state.operation,
+              result: state.result,
+            },
+          ],
+          operation: state.result,
+          result: "",
+        };
+      }
     }
+    break;
     case "OPEN_SIDEMENU": {
       return {
         ...state,

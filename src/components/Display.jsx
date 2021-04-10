@@ -1,47 +1,45 @@
-import React, { useEffect, useState, useRef } from "react";
-import useAppContext from '../context/useAppContext'
+import React, { useEffect, useState } from "react";
+import useAppContext from "../context/useAppContext";
 
 import "./styles/Display.scss";
 
 const Display = () => {
   const { state, dispatch } = useAppContext();
   const { operation, result, history } = state;
-  const [swipe, setSwipe] = useState(false)
+  const [swipe, setSwipe] = useState(false);
 
   useEffect(() => {
     try {
-      if(operation.match(/[0-9]$/)) {
+      if (operation.match(/[0-9]$/)) {
         dispatch({
-          type: 'CALCULATE',
-          payload: eval(operation)
-        })
-      }else if(operation.length > 1) {
+          type: "CALCULATE",
+          payload: eval(operation),
+        });
+      } else if (operation.length > 1) {
         dispatch({
-          type: 'CALCULATE',
-          payload: eval(operation.slice(0,-1))
-        })
+          type: "CALCULATE",
+          payload: eval(operation.slice(0, -1)),
+        });
       }
-    }catch (error){
-      console.log("Error: No se pudo realizar la operacion")
+    } catch (error) {
+      console.log("Error: No se pudo realizar la operacion");
     }
-  }, [operation])
+  }, [operation]);
 
   return (
     <div className={`display ${swipe ? "history-swipe" : ""}`}>
       <div className="history-block">
-        {
-          history.map(item => (
-            <>
-              <div className="line"></div>
-              <div className="display--box">
-                <span>{item.operation}</span>
-              </div>
-              <div className="display--box result">
-                <span>{item.result}</span>
-              </div>
-            </>
-          ))
-        }
+        {history.map((item) => (
+          <>
+            <div className="line"></div>
+            <div className="display--box">
+              <span>{item.operation}</span>
+            </div>
+            <div className="display--box result">
+              <span>{item.result}</span>
+            </div>
+          </>
+        ))}
       </div>
       <div className="display--box">
         <span>{operation}</span>
@@ -54,6 +52,6 @@ const Display = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Display;
